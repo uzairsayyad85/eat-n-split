@@ -7,13 +7,13 @@ export default function FormSplitBill({ selectedFriend, handleSplitBill }) {
   const [bill, setBill] = useState("");
   const [paidByUser, setPaidByUser] = useState("");
   const paidByFriend = bill ? bill - paidByUser : "";
-  const [whoIsPaying, setWhoIsPaying] = useState("user");
+  const [whoIsPaying, setWhoIsPaying] = useState("you");
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!bill || !paidByUser) return;
-    handleSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
+    handleSplitBill(whoIsPaying === "you" ? paidByFriend : -paidByUser);
   }
 
   return (
@@ -46,7 +46,7 @@ export default function FormSplitBill({ selectedFriend, handleSplitBill }) {
         value={whoIsPaying}
         onChange={(e) => setWhoIsPaying(e.target.value)}
       >
-        <option value="user">You</option>
+        <option value="you">You</option>
         <option value="friend">{selectedFriend.name}</option>
       </select>
       <Button>Split bill</Button>
